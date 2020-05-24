@@ -17,7 +17,7 @@ node {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
 
-        app = docker.build("cremerfc/flask-app")
+        app = docker.build("cremerfc/AppDirect")
     }
 
     stage('Test image') {
@@ -37,13 +37,11 @@ node {
         /* If we are pushing to docker hub, use this: */
            dockerRegistry =  'https://registry.hub.docker.com'
            dockerCreds = 'fernando-dockerhub'
-        /* If we are pushing to Artifactory, use this: 
-        dockerRegistry = 'https://armory-docker-local.jfrog.io'
-        dockerCreds = 'fernando-armory-artifactory'*/
+     
         
         docker.withRegistry(dockerRegistry, dockerCreds ) {
             app.push("${env.BUILD_NUMBER}")
-           /* app.push("latest") */
+            app.push("latest")
             
         }
     }
