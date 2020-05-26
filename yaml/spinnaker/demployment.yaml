@@ -15,7 +15,7 @@ spec:
         app: app-direct
     spec:
       containers:
-        - image: 'cremerfc/appdirect:${trigger["buildInfo"]["number"]}'
+        - image: 'cremerfc/appdirect:latest'
           name: appdirect
           ports:
             - containerPort: 5000
