@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-app-deployment
+  labels:
+    app: flask-app
+    component: flask-server
+spec:
+  replicas: REPLICAS
+  selector:
+    matchLabels:
+      app: flask-app
+      component: flask-server
+  template:
+    metadata:
+      labels:
+        app: flask-app
+        component: flask-server
+    spec:
+      containers:
+        - name: flask-app
+          image: cremerfc/flask-app:131
+          envFrom:
+          - configMapRef:
+              name: example-config
+          resources:
+            limits:
+              memory: '256Mi'
+              cpu: '500m'
