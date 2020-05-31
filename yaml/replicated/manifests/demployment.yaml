@@ -6,7 +6,7 @@ metadata:
     app: flask-app
     component: flask-server
 spec:
-  replicas: REPLICAS
+  replicas: 4
   selector:
     matchLabels:
       app: flask-app
