@@ -46,7 +46,7 @@ node {
         }
     }
     stage('Create Release in Replicated') {
-        sh 'cd AppDirect/yaml/replicated'
+        sh 'cd yaml/replicated'
         sh 'make release'
     }
 }
