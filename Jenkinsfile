@@ -45,9 +45,8 @@ node {
             
         }
     }
-    stage('Create Properties file') {
-        def content = "Build_Number=${env.BUILD_NUMBER}"
-        writeFile file: 'image.properties', text: content
-    
+    stage('Create Release in Replicated') {
+        sh 'cd AppDirect/yaml/replicated'
+        sh 'make release'
     }
 }
