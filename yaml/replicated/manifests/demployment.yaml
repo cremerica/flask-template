@@ -1,25 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: flask-app-deployment
+  name: app-direct-deployment
   labels:
-    app: flask-app
-    component: flask-server
+    app: app-direct
+    component: app-server
 spec:
-  replicas: 4
+  replicas: 1
   selector:
     matchLabels:
-      app: flask-app
-      component: flask-server
+      app: app-direct
+      component: app-server
   template:
     metadata:
       labels:
-        app: flask-app
-        component: flask-server
+        app: app-direct
+        component: app-server
     spec:
       containers:
-        - name: flask-app
-          image: cremerfc/flask-app:131
+        - name: appdirect
+          image: cremerfc/appdirect:latest
           envFrom:
           - configMapRef:
               name: example-config
