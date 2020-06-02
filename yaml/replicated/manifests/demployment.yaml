@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: appdirect
-          image: cremerfc/appdirect:latest
+          image: cremerfc/appdirect:BUILD_TAG
           envFrom:
           - configMapRef:
               name: example-config
