@@ -47,12 +47,10 @@ node {
     }
     stage('Create Release in Replicated') {
         sh '''
-            pwd
             export REPLICATED_APP="appdirect"
             export REPLICATED_API_TOKEN="5e8487ce72cfd690148f840e62c16fb2709bddaa09763dba195eb137b798c4"
             cd yaml/replicated
-            pwd
-            cat Makefile
+            make release
             '''
     }
 }
