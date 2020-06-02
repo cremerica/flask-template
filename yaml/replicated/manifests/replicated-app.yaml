@@ -3,7 +3,7 @@ kind: Application
 metadata:
   name: app-slug
 spec:
-  title: App Name
+  title: AppDirect
   icon: https://github.com/cncf/artwork/blob/master/projects/kubernetes/icon/color/kubernetes-icon-color.png
   statusInformers:
     - deployment/example-nginx
