@@ -8,9 +8,8 @@ spec:
     - clusterResources: {}
     - logs:
         selector:
-          - app=appdirect
-          - component=nginx
-        namespace: repl{{ Namespace }}
+          - app=app-direct
+          - component=app-server
         limits:
           maxAge: 30d
           maxLines: 10000
