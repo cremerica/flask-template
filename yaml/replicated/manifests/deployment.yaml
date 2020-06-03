@@ -29,7 +29,3 @@ spec:
                 name: appdirect-config-map
                 # Specify the key associated with the value
                 key: PAGE_MESSAGE
-          resources:
-            limits:
-              memory: '256Mi'
-              cpu: '500m'
