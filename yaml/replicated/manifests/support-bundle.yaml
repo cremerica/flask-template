@@ -18,5 +18,5 @@ spec:
         selector:
           - app=app-direct
         command: ["python3"]
-        args: ["-v"]
+        args: ["-V"]
         timeout: 5s
