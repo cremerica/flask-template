@@ -49,9 +49,6 @@ node {
         sh '''
             export REPLICATED_APP="appdirect"
             export REPLICATED_API_TOKEN="5e84879ce72cfd690148f840e62c16fb2709bddaa09763dba195eb137b798c49"
-            cd yaml/replicated/manifests
-            sed "s/BUILD_TAG/" + ${env.BUILD_NUMBER} + deployment.yaml
-            cd ..
             make release
             '''
     }
