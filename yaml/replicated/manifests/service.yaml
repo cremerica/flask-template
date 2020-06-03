@@ -1,14 +1,12 @@
-apiVersion: v1
+aapiVersion: v1
 kind: Service
 metadata:
-  name: example-nginx
-  labels:
-    app: example
-    component: nginx
+  name: app-direct-service
 spec:
-  type: ClusterIP
   ports:
-  - port: 80
+    - port: 80
+      protocol: TCP
+      targetPort: 5000
   selector:
-    app: example
-    component: nginx
+    app: app-direct
+  type: LoadBalancer
