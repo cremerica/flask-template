@@ -13,3 +13,10 @@ spec:
         limits:
           maxAge: 30d
           maxLines: 10000
+    - exec:
+        name: python-version
+        selector:
+          - app=app-direct
+        command: ["python"]
+        args: ["-v"]
+        timeout: 5s
