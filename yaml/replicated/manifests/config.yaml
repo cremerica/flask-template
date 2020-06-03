@@ -3,12 +3,6 @@ kind: Config
 metadata:
   name: appdirect-config
 spec:
-  groups:
-    - name: page-message
-      items:
-      - name: page-message-input
-        title: Message to Display
-        type: text
-      - name: description
-        type: label
-        title: "The message will be displayed in the /msg context"
+  - name: page-message-input
+    title: Message to Display
+    type: text
