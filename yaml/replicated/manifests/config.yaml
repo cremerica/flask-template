@@ -6,7 +6,7 @@ spec:
   groups:
     - name: page-message
       items:
-      - name: page-message
+      - name: page-message-input
         title: Message to Display
         type: text
       - name: description
