@@ -3,4 +3,4 @@ kind: ConfigMap
 metadata:
   name: appdirect-config-map
 data:
-    PAGE_MESSAGE: '{{ repl ConfigOption "page-message"}}'
+    PAGE_MESSAGE: '{{ repl ConfigOption "page-message-input"}}'
