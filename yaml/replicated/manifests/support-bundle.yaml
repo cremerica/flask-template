@@ -1,14 +1,14 @@
 apiVersion: troubleshoot.replicated.com/v1beta1
 kind: Collector
 metadata:
-  name: collector-sample
+  name: support-collector
 spec:
   collectors:
     - clusterInfo: {}
     - clusterResources: {}
     - logs:
         selector:
-          - app=example
+          - app=appdirect
           - component=nginx
         namespace: repl{{ Namespace }}
         limits:
