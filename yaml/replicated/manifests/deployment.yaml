@@ -20,6 +20,8 @@ spec:
       containers:
         - name: appdirect
           image: cremerfc/appdirect:latest
+          ports:
+            - containerPort: 5000
           env:
           # Define the environment variable
           - name: PAGE_MESSAGE
