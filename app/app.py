@@ -18,7 +18,7 @@ def test():
 
 @app.route('/msg')
 def display_message():
-    message_to_display = os.environ["PAGE_DISPLAY"]
+    message_to_display = os.environ["PAGE_MESSAGE"]
     return message_to_display
 
 if __name__ == '__main__':
