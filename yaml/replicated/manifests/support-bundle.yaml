@@ -17,6 +17,6 @@ spec:
         name: python-version
         selector:
           - app=app-direct
-        command: ["python"]
+        command: ["python3"]
         args: ["-v"]
         timeout: 5s
