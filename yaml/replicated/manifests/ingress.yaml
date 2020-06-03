@@ -8,5 +8,5 @@ spec:
       paths:
         - path: /
           backend:
-            serviceName: example-nginx
+            serviceName: app-direct-service
             servicePort: 80
