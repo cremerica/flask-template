@@ -3,6 +3,8 @@ kind: Config
 metadata:
   name: appdirect-config
 spec:
-  - name: page-message-input
-    title: Message to Display
-    type: text
+  - name: Display
+    items:
+    - name: page-message-input
+      title: Message to Display
+      type: text
