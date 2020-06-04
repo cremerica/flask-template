@@ -30,6 +30,7 @@ def create_support_file():
     file_content_str = str(file_content)
     file_to_write.write(file_content_str)
     file_to_write.close()
+    return "Check the App directory for a file called env_var.txt"
 
 
 @app.route('/msg')
