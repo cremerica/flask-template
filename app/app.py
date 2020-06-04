@@ -23,7 +23,7 @@ def test():
 def create_support_file():
     file_path = 'app/'
     file_name = 'env_vars.txt'
-    file_name_w_path= = os.path.join(file_path, file_name)
+    file_name_w_path = os.path.join(file_path, file_name)
     
     file_to_write = open(file_name_w_path, "w")
     file_content = os.environ
