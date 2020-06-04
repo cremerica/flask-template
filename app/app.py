@@ -27,7 +27,8 @@ def create_support_file():
     
     file_to_write = open(file_name_w_path, "w")
     file_content = os.environ
-    file_to_write.write(file_content)
+    file_content_str = str(file_content)
+    file_to_write.write(file_content_str)
     file_to_write.close()
 
 
