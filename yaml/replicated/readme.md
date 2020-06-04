@@ -21,4 +21,5 @@ The following summarizes what has been modified in the yaml files found in the `
 * Runs `exec` command to determine the version of Python in the container
 * Copies file created when the user browses to `http://<app-url>/support` which creates a text file that containing all environment variables.
 * HTTP get to `http://<app-url>/test` which should return a 200 return code and a message.
+* Collects the logs of the pod(s) running AppDirect
 
