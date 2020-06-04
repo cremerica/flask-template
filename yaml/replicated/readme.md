@@ -6,5 +6,19 @@ The following summarizes what has been modified in the yaml files found in the `
 
 **config-map.yaml:** Created a config map key to use the value entered by the user in the config specified in the *config.yaml* file.
 
-**Deployment.yaml:** Deploys the `cremerfc/appdirect:latest` container with a replicaset of 1. It is configured to expose port 5000 and use the value for the key configured in the *config-map.yaml* file as an environment variable.
+**deployment.yaml:** Deploys the `cremerfc/appdirect:latest` container with a replicaset of 1. It is configured to expose port 5000 and use the value for the key configured in the *config-map.yaml* file as an environment variable.
+
+**service.yaml:** Routes port 80 to port 5000 on the pod(s) running AppDirect
+
+**ingress.yaml:** Ingress for the service created by `service.yaml`
+
+**replicated-app.yaml:** Contains Application name for the Adminstration console.
+
+**support-bundle.yaml:** Contains the following Collectors:
+
+* Cluster Information
+* Cluster Resources
+* Runs `exec` command to determine the version of Python in the container
+* Copies file created when the user browses to `http://<app-url>/support` which creates a text file that containing all environment variables.
+* HTTP get to `http://<app-url>/test` which should return a 200 return code and a message.
 
