@@ -17,23 +17,36 @@ def index():
 @app.route('/test')
 # this was simply a test to see how to display a message by using a different route.
 def test():
-    conn = psycopg2.connect(
-        database="postgres", user='postgres', password='postgres', host='postgresql-service', port= '5432'
-    )
-    conn.autocommit = True
-
-    #Creating a cursor object using the cursor() method
-    cursor = conn.cursor()
-
-    #Preparing query to create a database
-    sql = '''CREATE database test123''';
-
-    #Creating a database
-    cursor.execute(sql)
-
-    #Closing the connection
-    conn.close()
+   
     return "This is the test"
+
+@app.route('/sql-check')
+def checkDB():
+
+    #first we need to check if the database exists, so we'll try connecting to the postgres database and check the catalog
+    conn = None
+    try:
+        conn = psycopg2.connect(database="postgres", user='postgres', password='postgres', host='postgresql-service', port= '5432')
+        message_to_display = "Connectend to Database \n"
+    except:
+        message_to_display = "There was a problem connecting to the database \n"
+    if conn is not None:
+        conn.autocommit = True
+        cur = conn.cursor()
+        cur.execute("SELECT datname FROM pg_database;")
+        database_list = cur.fetchall()
+        database_name = 'appdirectdb'
+        if (database_name) in database_list:
+            message_to_display += "AppDirect Database already exists \n"
+        else:
+            message_to_display += "AppDirect Database not found, will need to create one \n"
+            try:
+                cur.execute("CREATE database " + database_name)
+                message_to_display += "database created! \n"
+            except:
+                message_to_display += "There was an error creating the datbase... \n"
+            
+    return message_to_display;
 
 @app.route('/support')
 # This creates a file and dumps all environment variables. Used as an example of creating a file for support to troubleshoot.
