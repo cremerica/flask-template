@@ -36,6 +36,9 @@ def checkDB():
         cur.execute("SELECT datname FROM pg_database;")
         database_list = cur.fetchall()
         database_name = 'appdirectdb'
+        message_to_display += "The following databases are on the list <br>"
+        for database in database_list:
+            message_to_display += database + "<br>"
         if (database_name) in database_list:
             message_to_display += "AppDirect Database already exists <br>"
         else:
