@@ -40,7 +40,7 @@ def checkDB():
         message_to_display += "The following databases are on the list <br>"
         for database in database_list:
             message_to_display += str(database) + "<br>"
-            if (database_name,) in database:
+            if (database_name,) == database:
                db_exists = True
         if db_exists:    
             message_to_display += "AppDirect Database already exists <br>"
