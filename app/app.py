@@ -18,7 +18,7 @@ def index():
 # this was simply a test to see how to display a message by using a different route.
 def test():
     conn = psycopg2.connect(
-        database="postgres", user='postgres', password='XFF7TBJiZdiDLQgiCpSkAtLO82muVAKZ', host='34.71.4.130', port= '5432'
+        database="postgres", user='postgres', password='postgres', host='postgresql-service', port= '5432'
     )
     conn.autocommit = True
 
