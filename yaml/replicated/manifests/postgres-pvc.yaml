@@ -1,7 +1,7 @@
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: sentry-postgresql
+  name: postgresql-pvc
   labels:
     app: postgresql
 spec:

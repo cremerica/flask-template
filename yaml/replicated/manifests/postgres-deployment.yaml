@@ -36,7 +36,7 @@ spec:
         - name: POSTGRES_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: sentry-postgresql
+              name: postgresql-secret
               key: postgres-password
         - name: POD_IP
           valueFrom: { fieldRef: { fieldPath: status.podIP } }
@@ -73,4 +73,4 @@ spec:
       volumes:
       - name: data
         persistentVolumeClaim:
-          claimName: sentry-postgresql
+          claimName: postgresql-pvc

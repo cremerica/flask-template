@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 import requests
 import json
 import os
+import psycopg2
 
 
 app = Flask(__name__)
@@ -16,6 +17,22 @@ def index():
 @app.route('/test')
 # this was simply a test to see how to display a message by using a different route.
 def test():
+    conn = psycopg2.connect(
+        database="postgres", user='postgres', password='XFF7TBJiZdiDLQgiCpSkAtLO82muVAKZ', host='34.71.4.130', port= '5432'
+    )
+    conn.autocommit = True
+
+    #Creating a cursor object using the cursor() method
+    cursor = conn.cursor()
+
+    #Preparing query to create a database
+    sql = '''CREATE database test123''';
+
+    #Creating a database
+    cursor.execute(sql)
+
+    #Closing the connection
+    conn.close()
     return "This is the test"
 
 @app.route('/support')
