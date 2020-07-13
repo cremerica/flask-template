@@ -25,6 +25,7 @@ def checkDB():
 
     #first we need to check if the database exists, so we'll try connecting to the postgres database and check the catalog
     conn = None
+    db_exists = False
     try:
         conn = psycopg2.connect(database="postgres", user='postgres', password='postgres', host='postgresql-service', port= '5432')
         message_to_display = "Connectend to Database <br>"
@@ -39,7 +40,9 @@ def checkDB():
         message_to_display += "The following databases are on the list <br>"
         for database in database_list:
             message_to_display += str(database) + "<br>"
-        if (database_name) in database_list:
+            if str(database)==("('" + database_name + "',)"):
+               db_exists = True
+        if db_exists:    
             message_to_display += "AppDirect Database already exists <br>"
         else:
             message_to_display += "AppDirect Database not found, will need to create one <br>"
