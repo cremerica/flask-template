@@ -27,9 +27,9 @@ def checkDB():
     conn = None
     try:
         conn = psycopg2.connect(database="postgres", user='postgres', password='postgres', host='postgresql-service', port= '5432')
-        message_to_display = "Connectend to Database \n"
+        message_to_display = "Connectend to Database <br>"
     except:
-        message_to_display = "There was a problem connecting to the database \n"
+        message_to_display = "There was a problem connecting to the database <br>"
     if conn is not None:
         conn.autocommit = True
         cur = conn.cursor()
@@ -37,14 +37,14 @@ def checkDB():
         database_list = cur.fetchall()
         database_name = 'appdirectdb'
         if (database_name) in database_list:
-            message_to_display += "AppDirect Database already exists \n"
+            message_to_display += "AppDirect Database already exists <br>"
         else:
-            message_to_display += "AppDirect Database not found, will need to create one \n"
+            message_to_display += "AppDirect Database not found, will need to create one <br>"
             try:
                 cur.execute("CREATE database " + database_name)
-                message_to_display += "database created! \n"
+                message_to_display += "database created! <br>"
             except:
-                message_to_display += "There was an error creating the datbase... \n"
+                message_to_display += "There was an error creating the datbase... <br>"
             
     return message_to_display;
 

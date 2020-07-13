@@ -113,7 +113,7 @@ func main() {
 		log.Fatal(err)
 	}
 	for _, c := range channels {
-		fmt.Printf("channel %s is on release %d\n", c.Name, c.ReleaseSequence)
+		fmt.Printf("channel %s is on release %d<br>", c.Name, c.ReleaseSequence)
 	}
 }
 ```
