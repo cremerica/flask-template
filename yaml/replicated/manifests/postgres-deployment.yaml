@@ -1,11 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: sentry-postgresql
+  name: app-direct-postgresql
   labels:
     app: postgresql
-  annotations:
-    kots.io/when: '{{repl ConfigOptionEquals "postgres_type" "embedded_postgres"}}'
 spec:
   selector:
     matchLabels:
@@ -16,10 +14,10 @@ spec:
     metadata:
       labels:
         app: postgresql
-        component: sentry
+        component: app-direct
     spec:
       containers:
-      - name: sentry-postgresql
+      - name: app-direct-postgresql
         image: "postgres:9.6"
         imagePullPolicy: ""
         args:
