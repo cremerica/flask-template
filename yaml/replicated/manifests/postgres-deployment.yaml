@@ -23,12 +23,12 @@ spec:
         args:
         env:
         - name: POSTGRES_USER
-          value: "sentry"
+          value: "postgres"
           # Required for pg_isready in the health probes.
         - name: PGUSER
-          value: "sentry"
+          value: "postgres"
         - name: POSTGRES_DB
-          value: "sentry"
+          value: "postgres"
         - name: POSTGRES_INITDB_ARGS
           value: ""
         - name: PGDATA
