@@ -60,9 +60,21 @@ def createDB():
         try:
             cur.execute("CREATE database appdirectdb")
             message_to_display += "database created! ...will now try to create the table <br>"
-            cur.execute("""CREATE TABLE tblRecords (Data VARCHAR(250))""")
-            message_to_display += "Created Table without any errors"
+            
             cur.close()
+            conn.close()
+            conn = None
+            conn = psycopg2.connect(database="appdirectdb", user='postgres', password='postgres', host='postgresql-service', port= '5432')
+            if conn is not None:
+                conn.autocommit = True
+                cur = conn.cursor()
+                message_to_display += "Conneted to the App Direct DB... <br>"
+                cur.execute("""CREATE TABLE tblRecords (Data VARCHAR(250))""")
+                message_to_display += "Created Table without any errors"
+                cur.close()
+                conn.close()
+            else:
+                message_to_display += "There was a problem creatig the table <br>"
         except Exception as e:
             message_to_display += "There was an error creating the datbase: <br>" + str(e)
         conn.close()
@@ -79,7 +91,7 @@ def addData():
     if conn is not None:
         cur = conn.cursor()
         try:    
-            cur.execute("""INSERT INTO tblRecords (Data) VALUES(s%);""",(str(request.date)))
+            cur.execute("""INSERT INTO tblRecords (Data) VALUES(s%);""","hello this is a test")
             message_to_display += "Added a record to the table without any errors <br>"
             cur.close()
         except Exception as e:
