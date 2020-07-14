@@ -71,7 +71,7 @@ def addData():
         message_to_display = "Connectend to Database <br>"
         cur = conn.cursor()
         cur.execute("""CREATE TABLE tblRecords (Data VARCHAR(250))""")
-        cur.execute("""INSERT INTO appdirectdb (Data) VALUES(s%);""",(str(request.date) + " - " str(request.headers)))
+        cur.execute("""INSERT INTO tblRecords (Data) VALUES(s%);""",(str(request.date) + " - " str(request.headers)))
     except:
         message_to_display "Unable to connect to the Database. Try browsing /sql-check to see if the Database exists <br>"
     finally:

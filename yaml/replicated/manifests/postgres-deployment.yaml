@@ -1,26 +1,23 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: app-direct-postgresql
   labels:
     app: postgresql
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app: postgresql
-  strategy:
-    type: Recreate
+  serviceName: postgres-service
   template:
     metadata:
       labels:
         app: postgresql
-        component: app-direct
     spec:
       containers:
       - name: app-direct-postgresql
         image: "postgres:9.6"
-        imagePullPolicy: ""
-        args:
         env:
         - name: POSTGRES_USER
           value: "postgres"
@@ -70,4 +67,14 @@ spec:
       volumes:
       - name: data
         persistentVolumeClaim:
-          claimName: postgresql-pvc
+          claimName: postgresql-vct
+  volumeClaimTemplates:
+  - metadata:
+      name: postgresql-vct
+    spec:
+      accessModes:
+      - ReadWriteOnce
+      resources:
+        requests:
+          storage: 2Gi
+
