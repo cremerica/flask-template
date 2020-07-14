@@ -77,7 +77,7 @@ def addData():
     if conn is not None:
         cur = conn.cursor()
         try:    
-            cur.execute("""INSERT INTO tblRecords (Data) VALUES(s%);""",(str(request.date))
+            cur.execute("""INSERT INTO tblRecords (Data) VALUES(s%);""",(str(request.date)))
             message_to_display += "Added a record to the table without any errors"
             cur.close()
         except Exception as e:
