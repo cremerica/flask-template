@@ -59,7 +59,9 @@ def createDB():
         cur = conn.cursor()   
         try:
             cur.execute("CREATE database appdirectdb")
-            message_to_display += "database created! <br>"
+            message_to_display += "database created! ...will now try to create the table <br>"
+            cur.execute("""CREATE TABLE tblRecords (Data VARCHAR(250))""")
+            message_to_display += "Created Table without any errors"
             cur.close()
         except Exception as e:
             message_to_display += "There was an error creating the datbase: <br>" + str(e)
@@ -78,9 +80,7 @@ def addData():
         cur = conn.cursor()
         try:    
             cur.execute("""INSERT INTO tblRecords (Data) VALUES(s%);""",(str(request.date)))
-            message_to_display += "Added a record to the table without any errors ...will now try to create the table <br>"
-            cur.execute("""CREATE TABLE tblRecords (Data VARCHAR(250))""")
-            message_to_display += "Created Table without any errors"
+            message_to_display += "Added a record to the table without any errors <br>"
             cur.close()
         except Exception as e:
             message_to_display += " There was an error:" + str(e)
