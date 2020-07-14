@@ -23,59 +23,66 @@ def test():
 @app.route('/sql-check')
 def checkDB():
 
-    #first we need to check if the database exists, so we'll try connecting to the postgres database and check the catalog
+    #This method tries to connect to the default Postgres database and gets a list of databases - can be used to verify that the database exists
     conn = None
-    db_exists = False
     try:
         conn = psycopg2.connect(database="postgres", user='postgres', password='postgres', host='postgresql-service', port= '5432')
         message_to_display = "Connectend to Database <br>"
-    except:
-        message_to_display = "There was a problem connecting to the database <br>"
+    except, e:
+        message_to_display = "There was a problem connecting to the database <br>" + str(e)
     if conn is not None:
         conn.autocommit = True
         cur = conn.cursor()
         cur.execute("SELECT datname FROM pg_database;")
         database_list = cur.fetchall()
-        database_name = 'appdirectdb'
         message_to_display += "The following databases are on the list <br>"
         for database in database_list:
-            message_to_display += str(database) + "<br>"
-            if (database_name,) == str(database):
-               db_exists = True
-        if db_exists:    
-            message_to_display += "AppDirect Database already exists <br>"
-        else:
-            message_to_display += "AppDirect Database not found, will need to create one <br>"
-            try:
-                cur.execute("CREATE database " + database_name)
-                message_to_display += "database created! <br>"
-            except:
-                message_to_display += "There was an error creating the datbase... <br>"
-            
+            message_to_display += str(database) + "<br>"        
+        cur.close()
+        conn.close()    
     return message_to_display
 @app.route('/sql-create')
-def addData():
+def createDB():
+    #This method will create the database and table
     message_to_display = ""
     conn = None
+    db_exists = False
+    # Let's first connect
+    try:
+        conn = psycopg2.connect(database="postgres", user='postgres', password='postgres', host='postgresql-service', port= '5432')
+        message_to_display = "Connectend to postgres default database <br>"
+        message_to_display += "Checking to see if AppDirect database exists... <br>"
+    except, e: 
+        message_to_display += "There as an error connecting to the default postgres database <br>" + str(e)
+    if conn is not None:
+        conn.autocommit = True
+        cur = conn.cursor()   
+        try:
+            cur.execute("CREATE database appdirectdb")
+            message_to_display += "database created! <br>"
+            cur.close()
+        except, e:
+            message_to_display += "There was an error creating the datbase: <br>" + str(e)
+        conn.close()
 
-    sql_command = (
+return message_to_display
 
-        """
-        CREATE TABLE tblRecords (
-           Data VARCHAR(250)
-        )
-        """
-    )
+@app.route('/sql-add')
+def addData():            
     try:
         conn = psycopg2.connect(database="appdirectdb", user='postgres', password='postgres', host='postgresql-service', port= '5432')
         message_to_display = "Connectend to Database <br>"
+    except, e:
+        message_to_display = "Unable to connect to the Database. Try browsing /sql-check to see if the Database exists <br>" + str(e)
+    if conn is not None:
         cur = conn.cursor()
-        cur.execute("""CREATE TABLE tblRecords (Data VARCHAR(250))""")
-        cur.execute("""INSERT INTO tblRecords (Data) VALUES(s%);""",(str(request.date) + " - " + str(request.headers)))
-    except:
-        message_to_display ="Unable to connect to the Database. Try browsing /sql-check to see if the Database exists <br>"
-    finally:
-        cur.close()
+        try:    
+            cur.execute("""INSERT INTO tblRecords (Data) VALUES(s%);""",(str(request.date) + " - " + str(request.headers)))
+            message_to_display += "Added a record to the table without any errors"
+            cur.close()
+        except:
+            message_to_display += "" 
+           
         conn.close()
 
     return message_to_display
