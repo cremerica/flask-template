@@ -53,7 +53,32 @@ def checkDB():
                 message_to_display += "There was an error creating the datbase... <br>"
             
     return message_to_display;
+@app.route('/sql-create')
+def addData():
+    message_to_display = ""
+    conn = None
 
+    sql_command = (
+
+        """
+        CREATE TABLE tblRecords (
+           Data VARCHAR(250)
+        )
+        """
+    )
+    try:
+        conn = psycopg2.connect(database="appdirectdb", user='postgres', password='postgres', host='postgresql-service', port= '5432')
+        message_to_display = "Connectend to Database <br>"
+        cur = conn.cursor()
+        cur.execute("""CREATE TABLE tblRecords (Data VARCHAR(250))""")
+        cur.execute("""INSERT INTO appdirectdb (Data) VALUES(s%);""",(str(request.date) + " - " str(request.headers)))
+    except:
+        message_to_display "Unable to connect to the Database. Try browsing /sql-check to see if the Database exists <br>"
+    finally:
+        cur.close()
+        conn.close()
+
+    return message_to_display
 @app.route('/support')
 # This creates a file and dumps all environment variables. Used as an example of creating a file for support to troubleshoot.
 def create_support_file():
@@ -67,6 +92,7 @@ def create_support_file():
     file_to_write.write(file_content_str)
     file_to_write.close()
     return "Check the App directory for a file called env_var.txt"
+
 
 
 @app.route('/msg')
