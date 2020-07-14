@@ -61,13 +61,9 @@ spec:
             memory: 256Mi
 
         volumeMounts:
-        - name: data
+        - name: postgresql-vct
           mountPath: /var/lib/postgresql/data/pgdata
           subPath: postgresql-db
-      volumes:
-      - name: data
-        persistentVolumeClaim:
-          claimName: postgresql-vct
   volumeClaimTemplates:
   - metadata:
       name: postgresql-vct
