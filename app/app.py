@@ -65,7 +65,7 @@ def createDB():
             message_to_display += "There was an error creating the datbase: <br>" + str(e)
         conn.close()
 
-return message_to_display
+    return message_to_display
 
 @app.route('/sql-add')
 def addData():            
