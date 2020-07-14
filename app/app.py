@@ -28,7 +28,7 @@ def checkDB():
     try:
         conn = psycopg2.connect(database="postgres", user='postgres', password='postgres', host='postgresql-service', port= '5432')
         message_to_display = "Connectend to Database <br>"
-    except, e:
+    except Exception as e:
         message_to_display = "There was a problem connecting to the database <br>" + str(e)
     if conn is not None:
         conn.autocommit = True
@@ -52,7 +52,7 @@ def createDB():
         conn = psycopg2.connect(database="postgres", user='postgres', password='postgres', host='postgresql-service', port= '5432')
         message_to_display = "Connectend to postgres default database <br>"
         message_to_display += "Checking to see if AppDirect database exists... <br>"
-    except, e: 
+    except Exception as e: 
         message_to_display += "There as an error connecting to the default postgres database <br>" + str(e)
     if conn is not None:
         conn.autocommit = True
@@ -61,7 +61,7 @@ def createDB():
             cur.execute("CREATE database appdirectdb")
             message_to_display += "database created! <br>"
             cur.close()
-        except, e:
+        except Exception as e:
             message_to_display += "There was an error creating the datbase: <br>" + str(e)
         conn.close()
 
@@ -72,7 +72,7 @@ def addData():
     try:
         conn = psycopg2.connect(database="appdirectdb", user='postgres', password='postgres', host='postgresql-service', port= '5432')
         message_to_display = "Connectend to Database <br>"
-    except, e:
+    except Exception as e:
         message_to_display = "Unable to connect to the Database. Try browsing /sql-check to see if the Database exists <br>" + str(e)
     if conn is not None:
         cur = conn.cursor()
@@ -80,8 +80,8 @@ def addData():
             cur.execute("""INSERT INTO tblRecords (Data) VALUES(s%);""",(str(request.date) + " - " + str(request.headers)))
             message_to_display += "Added a record to the table without any errors"
             cur.close()
-        except:
-            message_to_display += "" 
+        except Exception as e:
+            message_to_display += "" + str(e)
            
         conn.close()
 
