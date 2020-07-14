@@ -52,7 +52,7 @@ def checkDB():
             except:
                 message_to_display += "There was an error creating the datbase... <br>"
             
-    return message_to_display;
+    return message_to_display
 @app.route('/sql-create')
 def addData():
     message_to_display = ""
