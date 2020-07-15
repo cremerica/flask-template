@@ -89,6 +89,7 @@ def addData():
     except Exception as e:
         message_to_display = "Unable to connect to the Database. Try browsing /sql-check to see if the Database exists <br>" + str(e)
     if conn is not None:
+        conn.autocommit = True
         cur = conn.cursor()
         try:
             # sql_statemnt = """INSERT INTO tblRecords (Data) VALUES (%s)"""
