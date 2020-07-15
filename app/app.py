@@ -69,7 +69,7 @@ def createDB():
                 conn.autocommit = True
                 cur = conn.cursor()
                 message_to_display += "Conneted to the App Direct DB... <br>"
-                cur.execute("""CREATE TABLE tblRecords (Data VARCHAR(250))""")
+                cur.execute("""CREATE TABLE tblrecords (data VARCHAR(250))""")
                 message_to_display += "Created Table without any errors"
                 cur.close()
                 conn.close()
@@ -93,7 +93,7 @@ def addData():
         try:
             # sql_statemnt = """INSERT INTO tblRecords (Data) VALUES (%s)"""
             # sql_values = "hello this is a test"
-            cur.execute("INSERT INTO tblRecords (Data) VALUES (%s)",("hello this is a test"))
+            cur.execute("INSERT INTO tblrecords (data) VALUES (%s)",("hello this is a test"))
             # cur.execute(sql_statemnt, sql_values)
             message_to_display += "Added a record to the table without any errors <br>"
             cur.close()
