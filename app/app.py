@@ -91,9 +91,10 @@ def addData():
     if conn is not None:
         cur = conn.cursor()
         try:
-            sql_statemnt = """INSERT INTO tblRecords (Data) VALUES (%s)"""
-            sql_values = "hello this is a test"
-            cur.execute(sql_statemnt, sql_values)
+            # sql_statemnt = """INSERT INTO tblRecords (Data) VALUES (%s)"""
+            # sql_values = "hello this is a test"
+            cur.execute("INSERT INTO tblRecords (Data) VALUES (%s)",("hello this is a test"))
+            # cur.execute(sql_statemnt, sql_values)
             message_to_display += "Added a record to the table without any errors <br>"
             cur.close()
         except Exception as e:
