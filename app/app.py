@@ -95,7 +95,7 @@ def addData():
         try:
             # sql_statemnt = """INSERT INTO tblRecords (Data) VALUES (%s)"""
             #sql_values = "hello this is a test"
-            sql_values = datetime.now()
+            sql_values = str(datetime.now())
             cur.execute("INSERT INTO tblrecords VALUES ('" + sql_values +"')")
             # cur.execute(sql_statemnt, sql_values)
             message_to_display += "Added a record to the table without any errors <br>"
