@@ -6,7 +6,7 @@ spec:
   groups:
     - name: display_opts
       title: Display Options
-      description: Set AppDirect Display Options Below
+      description: Set AppDirect Display Options Below to show
       items:
       - name: page-message-input
         title: Message to Display
