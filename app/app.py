@@ -128,5 +128,10 @@ def display_message():
     message_to_display = os.environ["PAGE_MESSAGE"]
     return message_to_display
 
+@app.route('/license-check')
+def license_check():
+    message_to_display = ""
+    return message_to_display
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
