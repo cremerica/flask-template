@@ -14,6 +14,8 @@ spec:
     metadata:
       labels:
         app: postgresql
+      annotations:
+        backup.velero.io/backup-volumes: postgresql-vct  
     spec:
       containers:
       - name: app-direct-postgresql
