@@ -19,3 +19,5 @@ spec:
     version: latest
   kotsadm:
     version: latest
+  velero:
+    version: latest

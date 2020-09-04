@@ -6,5 +6,5 @@ spec:
   title: AppDirect
   icon: https://github.com/cncf/artwork/blob/master/projects/kubernetes/icon/color/kubernetes-icon-color.png
   statusInformers:
-    - deployment/app-direct
+    - deployment/app-direct-deployment
   
