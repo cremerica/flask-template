@@ -1,7 +1,7 @@
 apiVersion: kots.io/v1beta1
 kind: Application
 metadata:
-  name: app-slug
+  name: app-direct
 spec:
   title: AppDirect
   icon: https://github.com/cncf/artwork/blob/master/projects/kubernetes/icon/color/kubernetes-icon-color.png
