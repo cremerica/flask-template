@@ -106,6 +106,26 @@ def addData():
         conn.close()
 
     return message_to_display
+@app.route('/sql-show')
+def addData():            
+    try:
+        conn = psycopg2.connect(database="appdirectdb", user='postgres', password='postgres', host='postgresql-service', port= '5432')
+        message_to_display = "Connectend to Database <br>"
+    except Exception as e:
+        message_to_display = "Unable to connect to the Database. Try browsing /sql-check to see if the Database exists <br>" + str(e)
+    if conn is not None:
+        conn.autocommit = True
+        cur = conn.cursor()
+        try:            
+            query_result = cur.execute("SELECT * from tblrecords")
+            message_to_display += str(query_result)
+            cur.close()
+        except Exception as e:
+            message_to_display += " There was an error:" + str(e)
+           
+        conn.close()
+
+    return message_to_display
 @app.route('/support')
 # This creates a file and dumps all environment variables. Used as an example of creating a file for support to troubleshoot.
 def create_support_file():
