@@ -23,3 +23,4 @@ The following summarizes what has been modified in the yaml files found in the `
 * HTTP get to `http://<app-url>/test` which should return a 200 return code and a message.
 * Collects the logs of the pod(s) running AppDirect
 
+This app is also really basic
