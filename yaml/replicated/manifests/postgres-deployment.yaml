@@ -15,9 +15,7 @@ spec:
       labels:
         app: postgresql
       annotations:
-        pre.hook.backup.velero.io/command: '["/bin/bash", "-c", "PGPASSWORD=$POSTGRES_PASSWORD pg_dump -U $POSTGRES_USER -d appdirectdb -h 127.0.0.1 > /backup/backup.sql"]'
-        pre.hook.backup.velero.io/timeout: 3m
-        backup.velero.io/backup-volumes: postgresql-backup  
+        backup.velero.io/backup-volumes: postgresql-vct    
     spec:
       containers:
       - name: app-direct-postgresql
