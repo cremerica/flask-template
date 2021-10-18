@@ -3,7 +3,29 @@ kind: Preflight
 metadata:
   name: example-preflight-checks
 spec:
+  collectors:
+    - data:
+        name: static/ip.txt
+        data: '{{repl ConfigOption "ingress_IP"}}'
+    - run:
+        collectorName: "run-ping"
+        image: busybox:1
+        name: ping.txt
+        namespace: default
+        command: ["ping"]
+        args: ["-w", "10", "-c", "10", "-i", "0.3", '{{repl ConfigOption "ingress_IP"}}']
+        imagePullPolicy: IfNotPresent
   analyzers:
+    - textAnalyze:
+        checkName: "Validate IP Address"
+        fileName: ping.txt/run-ping.log
+        regexGroups: '(?P<Transmitted>\d+) packets? transmitted, (?P<Received>\d+) packets? received, (?P<Loss>\d+)(\.\d+)?% packet loss'
+        outcomes:
+          - pass:
+              when: "Loss < 5"
+              message: Solid connection to {{repl ConfigOption "ingress_IP"}}
+          - fail:
+              message: Unable to establish a solid connection to {{repl ConfigOption "ingress_IP"}}, please ensure this is valid
     - clusterVersion:
         outcomes:
           - fail:

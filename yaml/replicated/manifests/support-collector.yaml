@@ -4,6 +4,9 @@ metadata:
   name: support-collector
 spec:
   collectors:
+    - data:
+        name: static/ip.txt
+        data: 'repl{{ ConfigOption "ingress_IP" }}'
     - clusterInfo: {}
     - clusterResources: {}
     - copy:

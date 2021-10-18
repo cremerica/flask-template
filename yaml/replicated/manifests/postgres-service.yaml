@@ -4,6 +4,8 @@ metadata:
   name: postgresql-service
   labels:
     app: postgresql
+  annotations:
+    kots.io/when: '{{repl ConfigOptionEquals "postgres_type" "embedded_postgres"}}'
 spec:
   type: NodePort
   ports:

@@ -5,11 +5,11 @@ metadata:
 spec:
   analyzers:
     - textAnalyze:
-        checkName: "checkEnvVars"
-        fileName: copy-my-file/env_vars.txt
-        regex: '*fernando*'
+        checkName: "checkDebug"
+        fileName: /app-direct-deployment-*.log
+        regex: 'Debug mode: off'
         outcomes:
           - pass:
-              message: this is the pass message
+              message: Debug Mode is Off
           - fail:
-              message: this is the fail message
+              message: Debug Mode is On          
