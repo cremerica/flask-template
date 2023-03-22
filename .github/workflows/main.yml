@@ -22,7 +22,8 @@ jobs:
           REMOTE_USER: ${{ secrets.USERNAME }}
           TARGET: ${{ secrets.TARGET_DIR }}
           
-  update-cortex:   
+  update-cortex:
+    name: Update Cortex with deploy info
     runs-on: ubuntu-latest
     container:
       image: docker://cremerfc/deploy:0.1
