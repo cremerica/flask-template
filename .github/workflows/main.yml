@@ -1,4 +1,5 @@
 # This is a basic workflow to help you get started with Actions
+name: deploy
 on:
   push:
     branches:
@@ -21,12 +22,11 @@ jobs:
           REMOTE_USER: ${{ secrets.USERNAME }}
           TARGET: ${{ secrets.TARGET_DIR }}
           
-      - name: mock_deploy
-        id: deploy
-        
-      - uses: docker://cremerfc/deploy:0.1
-        with:
-          args: >- # allows you to break string into multiple lines
+  update-cortex:   
+    runs-on: ubuntu-latest
+    container:
+      image: docker://cremerfc/deploy:0.1
+      options: >- # allows you to break string into multiple lines
             -k ${{ secrets.CORTEX_API_TOKEN }}
             -s ${{ ${{ github.sha }}}}
             -d GitHub Actions
