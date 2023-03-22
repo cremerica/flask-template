@@ -1,6 +1,6 @@
 # AppDirect Readme
 
-AppDirect is a sample Python Flask application used to test various technologies. This application is meant to be containerized and run in a Kubernetes Pod. The *yaml* directory contains two directories, *spinnaker* and *replicated* each containing yaml files that can be used to deploy the application.
+AppDirect is a sample Python Flask application used to test various technologies. This application is meant to be containerized and run in a Kubernetes Pod. The *yaml* directory contains a simple deployment yaml.
 
 The application provides output to stdout and can be obtained via `kubectl logs <pod name>` if running in Kubernetes. 
 
