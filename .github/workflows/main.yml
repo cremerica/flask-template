@@ -22,19 +22,16 @@ jobs:
           REMOTE_USER: ${{ secrets.USERNAME }}
           TARGET: ${{ secrets.TARGET_DIR }}
           
-  update-cortex:
-    name: Update Cortex with deploy info
-    runs-on: ubuntu-latest
-    container: 
-      image: cremerfc/deploy:0.1
-      options:      >- # allows you to break string into multiple lines
+      - name: update cortex
+        uses: docker://cremerfc/deploy:0.1
+        with:
+          args: >- # allows you to break string into multiple lines
             -k ${{ secrets.CORTEX_API_TOKEN }}
             -s ${{ ${{ github.sha }}}}
             -d GitHub Actions
             -g ${{ secrets.CORTEX_TAG}} 
             -t "DEPLOY"
             -e Prod
-            -u {{ steps.deploy.outcome }}   
-    steps:
-      - name: echo
-        run: echo "hi"
+            -u {{ steps.deploy.outcome }}
+          
+  
