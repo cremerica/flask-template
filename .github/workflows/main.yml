@@ -25,8 +25,9 @@ jobs:
   update-cortex:
     name: Update Cortex with deploy info
     runs-on: ubuntu-latest
-    container: cremerfc/deploy:0.1
-    options:      | # allows you to break string into multiple lines
+    container: 
+      image: cremerfc/deploy:0.1
+      options:      >- # allows you to break string into multiple lines
             -k ${{ secrets.CORTEX_API_TOKEN }}
             -s ${{ ${{ github.sha }}}}
             -d GitHub Actions
