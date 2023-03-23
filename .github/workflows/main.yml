@@ -30,7 +30,7 @@ jobs:
       - name: Check out the repo
         uses: actions/checkout@v2
       - name: Run the Container
-        uses: addnab/docker-run-actions@v3
+        uses: addnab/docker-run-action@v3
         with:
             image: docker://cremerfc/deploy:0.1
             options: -k ${{ secrets.CORTEX_API_TOKEN }} -s ${{ github.sha }}}} -d GitHub Actiions -g ${{ secrets.CORTEX_TAG}} -t "DEPLOY" -e Prod -u {{ steps.deploy.outcome }}
