@@ -23,5 +23,4 @@ jobs:
           REMOTE_USER: ${{ secrets.USERNAME }}
           TARGET: ${{ secrets.TARGET_DIR }}
       - name: Update Cortex
-        run: docker run cremerfc/deployer:latest -k ${{ secrets.CORTEX_API_TOKEN }} -s ${{ github.sha }} -d "GitHub Actions" -g ${{ secrets.CORTEX_TAG}} -t "DEPLOY" -e Prod -u ${{ steps.deploy.outcome }} -l email@example.com -m "Trying this"
-  
+        run: docker run cremerfc/deployer:0.1 -k ${{ secrets.CORTEX_API_TOKEN }} -s ${{ github.sha }} -d "GitHub Actions" -g ${{ secrets.CORTEX_TAG}} -t "DEPLOY" -e Prod -c '{"cluster": "Prod", "status": ${{ steps.deploy.outcome }} }' -l email@example.com
