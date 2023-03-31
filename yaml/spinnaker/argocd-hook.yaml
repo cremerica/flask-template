@@ -18,6 +18,7 @@ spec:
               secretKeyRef:
                 name: cortex
                 key: CORTEX_TOKEN
+      restartPolicy: Never          
           args:
             - -k 
             - "$(CORTEX_TOKEN)"
