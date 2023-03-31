@@ -37,6 +37,6 @@ spec:
           - -l 
           - "ops@example.com"
           - -c 
-          - '{\"cluster\": \"Prod\" , \"status\": \"Success\"}'
+          - '{"cluster": "Prod" , "status": "Success"}'
       restartPolicy: Never         
   backoffLimit: 0 
