@@ -32,8 +32,10 @@ spec:
           - "DEPLOY"
           - -e
           - "PROD"
-          - -d "ArgoCD"
-          - -l "ops@example.com"
+          - -d 
+          - "ArgoCD"
+          - -l 
+          - "ops@example.com"
           - -c 
           - '{\"cluster\": \"Prod\" , \"status\": \"Success\"'
       restartPolicy: Never         
