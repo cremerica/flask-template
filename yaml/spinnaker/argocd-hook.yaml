@@ -18,7 +18,6 @@ spec:
               secretKeyRef:
                 name: cortex
                 key: CORTEX_TOKEN
-          command: ["python3 app/app.py"]
           args:
             - -k 
             - "$(CORTEX_TOKEN)"
