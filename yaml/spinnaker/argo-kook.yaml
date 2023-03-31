@@ -1,0 +1,37 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  generateName: cortex-notification
+  annotations:
+    argocd.argoproj.io/hook: PostSync
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
+spec:
+  template:
+    spec:
+      containers:
+        - name: cortex-deployer
+          image: "cremerfc/deployer:0.2"
+          imagePullPolicy: IfNotPresent
+          env:
+          - name: CORTEX_TOKEN
+            valueFrom:
+              secretKeyRef:
+                name: cortex
+                key: CORTEX_TOKEN
+      restartPolicy: Never          
+          args:
+            - -k 
+            - "$(CORTEX_TOKEN)"
+            - -s  
+            - "1234"
+            - -g 
+            - "app-direct"
+            - -t
+            - "DEPLOY"
+            - -e
+            - "PROD"
+            - -d "ArgoCD"
+            - -l "ops@example.com"
+            - -c 
+            - '{\"cluster\": \"Prod\" , \"status\": \"Success\"'
+  backoffLimit: 2 
