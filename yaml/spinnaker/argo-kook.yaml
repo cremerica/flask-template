@@ -10,7 +10,7 @@ spec:
     spec:
       containers:
         - name: cortex-deployer
-          image: "cremerfc/deployer:0.2"
+          image: "cremerfc/deployer:0.1"
           imagePullPolicy: IfNotPresent
           env:
           - name: CORTEX_TOKEN
