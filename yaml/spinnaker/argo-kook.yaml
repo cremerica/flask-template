@@ -7,31 +7,34 @@ metadata:
     argocd.argoproj.io/hook-delete-policy: HookSucceeded
 spec:
   template:
-    spec:
+    metadata:
+        labels:
+          name: cortex-update
+    spec:      
       containers:
-        - name: cortex-deployer
-          image: "cremerfc/deployer:0.1"
-          imagePullPolicy: IfNotPresent
-          env:
-          - name: CORTEX_TOKEN
-            valueFrom:
-              secretKeyRef:
-                name: cortex
-                key: CORTEX_TOKEN
-      restartPolicy: Never          
-          args:
-            - -k 
-            - "$(CORTEX_TOKEN)"
-            - -s  
-            - "1234"
-            - -g 
-            - "app-direct"
-            - -t
-            - "DEPLOY"
-            - -e
-            - "PROD"
-            - -d "ArgoCD"
-            - -l "ops@example.com"
-            - -c 
-            - '{\"cluster\": \"Prod\" , \"status\": \"Success\"'
-  backoffLimit: 2 
+      - name: cortex-deployer
+        image: "cremerfc/deployer:0.1"
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: CORTEX_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: cortex
+              key: CORTEX_TOKEN       
+        args:
+          - -k 
+          - "$(CORTEX_TOKEN)"
+          - -s  
+          - "1234"
+          - -g 
+          - "app-direct"
+          - -t
+          - "DEPLOY"
+          - -e
+          - "PROD"
+          - -d "ArgoCD"
+          - -l "ops@example.com"
+          - -c 
+          - '{\"cluster\": \"Prod\" , \"status\": \"Success\"'
+      restartPolicy: Never         
+  backoffLimit: 0 
