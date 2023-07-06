@@ -15,7 +15,7 @@ spec:
         app: app-direct
     spec:
       containers:
-        - image: 'cremerfc/appdirect:latest'
+        - image: 'cremerfc/appdirect:10'
           name: appdirect
           ports:
             - containerPort: 5000
