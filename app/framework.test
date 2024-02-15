@@ -1,0 +1,5 @@
+<Project Sdk="test">
+  <PropertyGroup>
+    <TargetFramework>1.02</TargetFramework>
+  </PropertyGroup>
+</Project>
