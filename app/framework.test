@@ -1,4 +1,4 @@
-<Project Sdk="test">
+<Project>
   <PropertyGroup>
     <TargetFramework>1.02</TargetFramework>
   </PropertyGroup>
