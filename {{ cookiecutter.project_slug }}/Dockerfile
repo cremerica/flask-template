@@ -1,6 +1,6 @@
 FROM ubuntu:20.04
 
-MAINTAINER Fernando Cremer "cremerfc@gmail.com"
+MAINTAINER {{cookiecutter.full_name}} {{cookiecutter.email}}
 
 RUN apt-get update -y && \
     apt-get install -y python3-pip python3-dev
