@@ -2,17 +2,17 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: app-direct
-  name: app-direct
+    app: {{cookiecutter.app_name}}
+  name: {{cookiecutter.app_name}}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: app-direct
+      app: {{cookiecutter.app_name}}
   template:
     metadata:
       labels:
-        app: app-direct
+        app: {{cookiecutter.app_name}}
     spec:
       containers:
         - image: 'cremerfc/appdirect:10'
@@ -23,12 +23,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: app-direct-service
+  name: {{cookiecutter.app_name}}-service
 spec:
   ports:
     - port: 80
       protocol: TCP
       targetPort: 5000
   selector:
-    app: app-direct
+    app: {{cookiecutter.app_name}}
   type: LoadBalancer
