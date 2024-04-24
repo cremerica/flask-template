@@ -23,7 +23,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{cookiecutter.app_name}}-service
+  name: {{cookiecutter.slug}}-service
 spec:
   ports:
     - port: 80
